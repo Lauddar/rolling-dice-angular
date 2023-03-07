@@ -1,0 +1,23 @@
+<section>
+  <div class="container py-5">
+    <div class="row d-flex justify-content-center align-items-center">
+      <div class="text-white border border-3 border-white">
+        <div class="p-5 text-center">
+          <h2 class="fw-bold mb-2 text-uppercase">Login</h2>
+          <p class="text-white-50 mb-5">Please enter your login and password</p>
+          <form novalidate [formGroup]="loginForm" (ngSubmit)="onLogin()">
+            <div class="form-outline form-white mb-4">
+              <label class="form-label">Email</label>
+              <input type="text" name="email" class="form-control custom-input" formControlName="email"/>
+            </div>
+            <div class="form-outline form-white mb-5">
+              <label class="form-label">Password</label>
+              <input type="password" name="password" class="form-control custom-input" formControlName="password"/>
+            </div>
+            <button type="submit" class="btn btn-outline-light btn-lg px-5 custom-button">Login</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
