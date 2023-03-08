@@ -9,6 +9,12 @@
     background: linear-gradient(to right, #E384FF, rgba(37, 117, 252, 1))
 }
 
+.custom-form {
+    border: 3px solid white;
+    background-color: transparent;
+    color: white;
+}
+
 .form-control {
     border: 3px solid white;
     background-color: transparent;
