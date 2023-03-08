@@ -28,8 +28,9 @@ export class LoginComponent implements OnInit {
     this.api.login(formValue).subscribe(data => {
       let dataResponse:ResponseI = data;
       if(dataResponse.status) {
-        localStorage.setItem("access_token", dataResponse.access_token);
-        this.router.navigate(['play']);
+        localStorage.setItem('token', dataResponse.access_token);
+        let user = dataResponse.result.user.id;
+        this.router.navigate([`api/players/${user}/games`]);
       }
     });
   }

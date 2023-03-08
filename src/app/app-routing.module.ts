@@ -4,9 +4,9 @@ import { GameComponent } from './components/game/game.component';
 import { LoginComponent } from './components/login/login.component';
 
 const routes: Routes = [
-  { path: '', redirectTo:'play', pathMatch:'full' },
+  { path: '', redirectTo:'login', pathMatch:'full' },
   { path: 'login', component: LoginComponent },
-  { path: 'play', component: GameComponent }
+  { path: 'api/players/:user/games', component: GameComponent },
 ];
 
 @NgModule({
