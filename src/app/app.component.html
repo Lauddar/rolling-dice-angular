@@ -309,6 +309,9 @@
 
 <div class="content" role="main">
   <!-- Resources -->
+  <ng-container *ngIf="displayAppUser()">
+    <app-user></app-user>
+  </ng-container>
   <router-outlet></router-outlet>
 
   <!-- Footer -->

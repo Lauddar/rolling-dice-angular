@@ -1,7 +1,7 @@
 <section>
     <div class="container py-5">
         <div class="row d-flex justify-content-center align-items-center p-5 text-center custom-form col-md-9 mx-auto">
-            <h2 class="fw-bold mb-2 text-uppercase">Register</h2>
+            <h2 class="fw-bold mb-2 text-uppercase">Signin</h2>
             <p class="text-white-50 mb-5">Create a new player</p>
             <form novalidate [formGroup]="registerForm" (ngSubmit)="onRegister()">
                 <div class="form-outline form-white mb-4">
@@ -22,7 +22,7 @@
                     <input type="password" name="password_confirmation" class="form-control custom-input"
                         formControlName="password_confirmation" />
                 </div>
-                <button type="submit" class="btn btn-outline-light btn-lg px-5 custom-button">Login</button>
+                <button type="submit" class="btn btn-outline-light btn-lg px-5 custom-button">Signin</button>
             </form>
         </div>
     </div>
