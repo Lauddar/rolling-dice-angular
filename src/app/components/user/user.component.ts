@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { firstValueFrom } from 'rxjs';
 import { ApiService } from 'src/app/services/api.service';
 
 @Component({
@@ -9,54 +9,51 @@ import { ApiService } from 'src/app/services/api.service';
   styleUrls: ['./user.component.css']
 })
 
-export class UserComponent {
-  public nickname: string | null = "";
+export class UserComponent implements OnInit {
+  public nickname: string | null = '';
+  private savedNickname: string | null = '';
   public editable: boolean = false;
 
-  constructor(private api: ApiService, private router: Router, private activeRouter: ActivatedRoute) {
-    this.nickname = this.getNickname();
-  }
+  constructor(private api: ApiService, private activeRouter: ActivatedRoute) { }
 
-  getToken() {
-    return localStorage.getItem('access_token')
+  ngOnInit(): void {
+    this.nickname = localStorage.getItem('nickname');
+    this.savedNickname = this.nickname;
   }
 
   getUser() {
     return this.activeRouter.firstChild?.snapshot.paramMap.get('user');
   }
 
-  getNickname() {
-    return localStorage.getItem('nickname');
-  }
-
-  setNickname() {
-    if(this.nickname) localStorage.setItem('nickname', this.nickname);
-  }
-
-  setEditable() {
+  async setEditable(): Promise<void> {
     if (this.editable) {
       this.editable = false;
-      this.setNickname();
-      this.updateNickname();
+      let result = await this.updateNickname();
+      if (result) {
+        this.savedNickname = this.nickname;
+        if (!this.nickname) {
+          this.nickname = 'anonymous';
+          this.savedNickname = this.nickname;
+        }
+        localStorage.setItem('nickname', this.nickname);
+      } else {
+        this.nickname = this.savedNickname;
+      }
     } else {
       this.editable = true;
     }
   }
 
-  updateNickname() {
-    let user = this.getUser();
-    let nickname = this.getNickname();
-    if (user && nickname) {
-      this.api.updateNickname(nickname, user).subscribe(data => {
-        let dataResponse = data;
-        console.log(data);
-      });
+  async updateNickname(): Promise<boolean> {
+    const user = this.getUser();
+    if (!this.nickname) this.nickname = '';
+    if (user) {
+      let data = await firstValueFrom(this.api.updateNickname(this.nickname, user));
+      let dataResponse = data;
+      return dataResponse.status;
     }
+    return false;
   }
-
-
-
-
 
 }
 
