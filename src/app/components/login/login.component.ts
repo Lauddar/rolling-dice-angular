@@ -29,6 +29,7 @@ export class LoginComponent implements OnInit {
       let dataResponse:ResponseI = data;
       if(dataResponse.status) {
         localStorage.setItem('token', dataResponse.result.access_token);
+        localStorage.setItem('nickname', dataResponse.result.user.nickname);
         let user = dataResponse.result.user.id;
         this.router.navigate([`players/${user}/play`]);
       }
