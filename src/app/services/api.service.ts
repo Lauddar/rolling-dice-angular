@@ -54,4 +54,10 @@ export class ApiService {
     return this.http.get<any>(dir, this.httpOptions);
   }
 
+  deleteGames(user: string): Observable<any> {
+      let dir = this.apiEndpoint + "/players/" + user + "/games";
+      return this.http.delete<any>(dir, this.httpOptions);
+  }
+
+
 }
