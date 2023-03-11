@@ -49,4 +49,9 @@ export class ApiService {
     return this.http.put<ResponseI>(dir, {nickname, user}, this.httpOptions)
   }
 
+  gamesList(user: string): Observable<any> {
+    let dir = this.apiEndpoint + "/players/" + user + "/games";
+    return this.http.get<any>(dir, this.httpOptions);
+  }
+
 }

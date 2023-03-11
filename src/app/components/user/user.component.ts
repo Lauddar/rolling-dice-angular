@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { firstValueFrom } from 'rxjs';
 import { ApiService } from 'src/app/services/api.service';
 
@@ -14,7 +14,7 @@ export class UserComponent implements OnInit {
   private savedNickname: string | null = '';
   public editable: boolean = false;
 
-  constructor(private api: ApiService, private activeRouter: ActivatedRoute) { }
+  constructor(private api: ApiService, private router: Router, private activeRouter: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.nickname = localStorage.getItem('nickname');
