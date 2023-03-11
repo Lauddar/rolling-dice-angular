@@ -311,7 +311,10 @@
   <!-- Resources -->
   <ng-container *ngIf="displayAppUser()">
     <app-user></app-user>
-  </ng-container>
+  <div *ngIf="isAdmin()">
+    <app-admin-panel></app-admin-panel>
+  </div>
+</ng-container>
   <router-outlet></router-outlet>
 
   <!-- Footer -->
