@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-admin-panel',
@@ -7,12 +8,14 @@ import { Component } from '@angular/core';
 })
 export class AdminPanelComponent {
   options = [
-    { label: 'See all players', route: '/players' },
-    { label: 'See worst player', route: '/worst-player' },
-    { label: 'See best player', route: '/best-player' },
+    { label: 'See all players', route: 'all' },
+    { label: 'See worst player', route: 'loser' },
+    { label: 'See best player', route: 'winner' },
   ];
 
+  constructor(private router: Router) { }
+  
   onSelectionChange(route: string) {
-    // aquí puedes redirigir al usuario al componente correspondiente
+    this.router.navigate(['players/ranking/', route]);
   }
 }
