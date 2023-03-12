@@ -1,0 +1,44 @@
+<app-success-rate></app-success-rate>
+<div class="container-fluid mt-4">
+    <div class="row">
+        <div class="col-xs-12 mat-elevation-z8">
+            <table mat-table [dataSource]="players" matSort>
+                <!-- ID Column -->
+                <ng-container matColumnDef="id">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+                    <td mat-cell *matCellDef="let player" class="text-center"> {{ player.id }} </td>
+                </ng-container>
+
+                <!-- Nickname Column -->
+                <ng-container matColumnDef="nickname">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Nickname </th>
+                    <td mat-cell *matCellDef="let player" class="text-center"> {{ player.nickname }} </td>
+                </ng-container>
+
+                <!--  Email Column -->
+                <ng-container matColumnDef="email">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Email </th>
+                    <td mat-cell *matCellDef="let player" class="text-center"> {{ player.email }} </td>
+                </ng-container>
+
+                <!-- Success Rate Column -->
+                <ng-container matColumnDef="success_rate">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Success Rate </th>
+                    <td mat-cell *matCellDef="let player" class="text-center"> {{ player.success_rate }} </td>
+                </ng-container>
+
+                <!-- Created At Column -->
+                <ng-container matColumnDef="created_at">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Created </th>
+                    <td mat-cell *matCellDef="let player" class="text-center"> {{ player.created_at | date: 'dd/MM/yyyy HH:mm' }}
+                    </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+
+            <mat-paginator [pageSizeOptions]="[10, 25, 100]" showFirstLastButtons></mat-paginator>
+        </div>
+    </div>
+</div>
