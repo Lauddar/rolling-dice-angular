@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
+import { FormGroup, FormControl, Validators} from '@angular/forms';
 import { ApiService } from 'src/app/services/api.service';
 import { LoginI } from 'src/app/model/login.interface';
 import { ResponseI } from 'src/app/model/response.interface';
@@ -29,6 +29,7 @@ export class LoginComponent implements OnInit {
       let dataResponse:ResponseI = data;
       if(dataResponse.status) {
         localStorage.setItem('token', dataResponse.result.access_token);
+        localStorage.setItem('nickname', dataResponse.result.user.nickname);
         let user = dataResponse.result.user.id;
         this.router.navigate([`players/${user}/play`]);
       }

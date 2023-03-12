@@ -32,11 +32,21 @@ export class ApiService {
     return this.http.post<ResponseI>(dir, form);
   }
 
-  play(user: string): Observable<GameI>{
+  play(user: string): Observable<GameI> {
     {
-      console.log(this.httpOptions.headers.get('Authorization'));
       let dir = this.apiEndpoint + "/players/" + user + "/games";
       return this.http.post<GameI>(dir, {}, this.httpOptions)
     }
   }
+
+  getUser(user: string): Observable<any> {
+    let dir = this.apiEndpoint + "/players/" + user;;
+    return this.http.get<any>(dir, this.httpOptions);
+  }
+
+  updateNickname(nickname: string, user: string): Observable<ResponseI> {
+    let dir = this.apiEndpoint + "/players/" + user;
+    return this.http.put<ResponseI>(dir, {nickname, user}, this.httpOptions)
+  }
+
 }

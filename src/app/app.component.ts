@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,12 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'rollingDice';
+
+  constructor(private activatedRoute: ActivatedRoute) {}
+
+  displayAppUser(): boolean {
+    let routePath = this.activatedRoute.firstChild?.snapshot.routeConfig?.path;
+    return routePath !== 'login' && routePath !== 'register';
+  }
+
 }

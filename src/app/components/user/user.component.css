@@ -1,0 +1,65 @@
+input {
+  font-size: 18px;
+  padding: 5px;
+}
+
+input.editable {
+    border: 2px solid white;
+    border-radius: 5px;
+    padding: 5px;
+    margin-right: 10px;
+    background-color: transparent;
+    color: white;
+}
+
+input[disabled] {
+    border: none;
+    background-color: transparent;
+    color: white;
+    padding: 5px;
+}
+
+button {
+    background-color: transparent;
+    border: none;
+    color: white;
+    padding: 0;
+  }
+  
+  button:focus {
+    outline: none;
+  }
+  
+  button i {
+    font-size: 1rem;
+    color: white;
+  }
+  
+  button:not(:disabled):hover i {
+    color: #E384FF;
+  }
+
+  .tooltiptext {
+    visibility: hidden;
+    width: 60px;
+    background-color: #E384FF;
+    color: white;
+    text-align: center;
+    border-radius: 6px;
+    padding: 6px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 100%;
+    left: 50%;
+    margin-left: -30px;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  
+  button:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+  }
+  
+  
+  

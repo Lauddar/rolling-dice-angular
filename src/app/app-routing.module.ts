@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { GameComponent } from './components/game/game.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
+import { UserComponent } from './components/user/user.component';
 
 const routes: Routes = [
   { path: '', redirectTo:'login', pathMatch:'full' },
