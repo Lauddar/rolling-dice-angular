@@ -1,0 +1,42 @@
+.gradient-custom {
+    /* fallback for old browsers */
+    background: #E384FF;
+
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: -webkit-linear-gradient(to right, #E384FF, rgba(37, 117, 252, 1));
+
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: linear-gradient(to right, #E384FF, rgba(37, 117, 252, 1))
+}
+
+.form-control {
+    border: 3px solid white;
+    background-color: transparent;
+    color: white;
+}
+
+.custom-input {
+    border: 3px solid white;
+    background-color: transparent;
+    color: white;
+}
+
+.custom-button {
+    background-color: white;
+    color: #191825;
+}
+
+.custom-button:hover {
+    background-color: #E384FF;
+    color: white;
+    border-color: transparent;
+}
+
+.form-label {
+    color: white;
+    font-size: 18px;
+}
+
+.mb-5 {
+    margin-bottom: 20px;
+}
