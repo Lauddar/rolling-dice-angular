@@ -10,11 +10,10 @@ export class AdminPanelComponent {
   options = [
     { label: 'See all players', route: 'all' },
     { label: 'See worst player', route: 'loser' },
-    { label: 'See best player', route: 'winner' },
+    { label: 'See best player', route: 'winner' }
   ];
 
   constructor(private router: Router) { }
-  
   onSelectionChange(route: string) {
     this.router.navigate(['players/ranking/', route]);
   }

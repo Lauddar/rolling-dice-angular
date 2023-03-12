@@ -5,7 +5,6 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { PlayerI } from 'src/app/model/player.interface';
-import { SuccessRateComponent } from '../success-rate/success-rate.component';
 
 @Component({
   selector: 'app-players',
@@ -16,6 +15,8 @@ export class PlayersComponent implements OnInit {
   displayedColumns: string[] = ['id', 'nickname', 'email', 'success_rate', 'created_at'];
   dataSource!: MatTableDataSource<any>;
   players!: MatTableDataSource<any>;
+  public title: string = '';
+  public isAll:boolean = false;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -38,15 +39,22 @@ export class PlayersComponent implements OnInit {
     switch(route) {
       case 'all':
         this.getAllPlayersFromApi();
+        this.title = 'All players';
+        this.isAll = true;
         break;
       case 'loser':
         this.getLoserFromApi();
+        this.title = 'Worst player';
+        this.isAll = false;
         break;
       case 'winner':
         this.getWinnerFromApi();
+        this.title = 'Best players';
         break;
       default:
         this.getAllPlayersFromApi();
+        this.title = 'All players';
+        this.isAll = false;
         break;
     }
   }

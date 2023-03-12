@@ -30,6 +30,7 @@ export class LoginComponent implements OnInit {
       if(dataResponse.status) {
         localStorage.setItem('token', dataResponse.result.access_token);
         localStorage.setItem('nickname', dataResponse.result.user.nickname);
+        localStorage.setItem('user_id', dataResponse.result.user.id);
         localStorage.setItem('role', dataResponse.result.user.role);
         let user = dataResponse.result.user.id;
         this.router.navigate([`players/${user}/play`]);
