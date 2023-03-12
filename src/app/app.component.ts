@@ -16,4 +16,13 @@ export class AppComponent {
     return routePath !== 'login' && routePath !== 'register';
   }
 
+  isAdmin(): boolean {
+    if(localStorage.getItem('role') == 'Admin'){
+      return true;
+    } else {
+      return false;
+    }
+  }
+  
+
 }
