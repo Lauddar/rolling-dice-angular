@@ -59,5 +59,26 @@ export class ApiService {
       return this.http.delete<any>(dir, this.httpOptions);
   }
 
+  playersList(): Observable<any> {
+    let dir = this.apiEndpoint + "/players";
+    return this.http.get<any>(dir, this.httpOptions);
+  }
+
+  ranking(): Observable<any> {
+    let dir = this.apiEndpoint + "/players/ranking";
+    return this.http.get<any>(dir, this.httpOptions);
+  }
+
+  worstPlayer(): Observable<any> {
+    let dir = this.apiEndpoint + "/players/ranking/loser";
+    return this.http.get<any>(dir, this.httpOptions);
+  }
+
+  bestPlayer(): Observable<any> {
+    let dir = this.apiEndpoint + "/players/ranking/winner";
+    return this.http.get<any>(dir, this.httpOptions);
+  }
+
+
 
 }

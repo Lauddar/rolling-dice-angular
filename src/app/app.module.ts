@@ -1,12 +1,13 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { RouterModule } from '@angular/router';
-import { HttpClientModule } from '@angular/common/http';
-import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { MatTableModule } from '@angular/material/table';
-import { MatPaginatorModule  } from '@angular/material/paginator';
-import { MatSortModule } from '@angular/material/sort';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSelectModule } from '@angular/material/select';
+import { MatSortModule } from '@angular/material/sort';
+import { MatTableModule } from '@angular/material/table';
+import { NgModule } from '@angular/core';
+import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -14,11 +15,9 @@ import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { UserComponent } from './components/user/user.component';
 import { GamesListComponent } from './components/games-list/games-list.component';
-import { AdminPanelComponent } from './components/admin-panel/admin-panel.component';
-import { MatSelectModule } from '@angular/material/select';
-import { AllPlayersComponent } from './components/admin/all-players/all-players.component';
-import { WorstPlayerComponent } from './components/admin/worst-player/worst-player.component';
-import { BestPlayerComponent } from './components/admin/best-player/best-player.component';
+import { AdminPanelComponent } from './components/admin/admin-panel/admin-panel.component';
+import { PlayersComponent } from './components/admin/players/players.component';
+import { SuccessRateComponent } from './components/admin/success-rate/success-rate.component';
 
 @NgModule({
   declarations: [
@@ -28,9 +27,8 @@ import { BestPlayerComponent } from './components/admin/best-player/best-player.
     UserComponent,
     GamesListComponent,
     AdminPanelComponent,
-    AllPlayersComponent,
-    WorstPlayerComponent,
-    BestPlayerComponent,
+    PlayersComponent,
+    SuccessRateComponent,
   ],
   imports: [
     BrowserModule,
