@@ -45,4 +45,18 @@ export class GamesListComponent implements OnInit {
     let user = this.getUser();
     this.router.navigate([`players/${user}/play`]);
   }
+
+  delete() {
+    if (confirm('Are you sure you want to delete all your games?')) {
+      let user = this.getUser();
+      if (user) {
+        this.api.deleteGames(user).subscribe(data => {
+          let dataResponse = data;
+          console.log(dataResponse);
+        });
+      }
+      this.ngOnInit();
+    }
+  }
+
 }
