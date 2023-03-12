@@ -1,6 +1,7 @@
-<input type="text" class="custominput" [(ngModel)]="nickname" [disabled]="!editable"
+<div><input type="text" class="custominput" [(ngModel)]="nickname" [disabled]="!editable"
        [ngClass]="{'editable': editable}">
 <button (click)="setEditable()">
     <i class="fas" [ngClass]="{'fa-pencil-alt': !editable, 'fa-save': editable}"></i>
     {{ editable ? '' : '' }}
 </button>
+</div>

@@ -69,4 +69,9 @@ export class GameComponent {
       });
     }
   }
+
+  listGames() {
+    let user = this.getUser();
+    this.router.navigate([`players/${user}/games`]);
+  }
 }
