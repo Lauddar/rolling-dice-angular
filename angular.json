@@ -93,11 +93,17 @@
             ],
             "styles": [
               "@angular/material/prebuilt-themes/pink-bluegrey.css",
-              "src/styles.css",
               "node_modules/bootstrap/scss/bootstrap.scss",
-              "src/custom.scss"
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "src/custom.scss",
+              "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/bootstrap/dist/js/bootstrap.min.js",
+              "node_modules/@popperjs/core/dist/umd/popper.min.js"
+              
+            ]
           }
         }
       }

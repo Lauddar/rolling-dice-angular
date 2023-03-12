@@ -1,8 +1,9 @@
-<mat-form-field>
-    <mat-label>Admin Panel</mat-label>
-    <mat-select (selectionChange)="onSelectionChange($event.value)">
-      <mat-option *ngFor="let option of options" [value]="option.route">
-        {{ option.label }}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
+<mat-menu #menu="matMenu">
+  <button mat-menu-item *ngFor="let option of options" (click)="onSelectionChange(option.route)">
+    {{ option.label }}
+  </button>
+</mat-menu>
+
+<button mat-button [matMenuTriggerFor]="menu">
+  Admin Panel
+</button>

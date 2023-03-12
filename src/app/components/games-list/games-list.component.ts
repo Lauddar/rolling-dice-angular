@@ -41,11 +41,6 @@ export class GamesListComponent implements OnInit {
     return this.activeRouter.snapshot.paramMap.get('user');
   }
 
-  play() {
-    let user = this.getUser();
-    this.router.navigate([`players/${user}/play`]);
-  }
-
   delete() {
     if (confirm('Are you sure you want to delete all your games?')) {
       let user = this.getUser();
