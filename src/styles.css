@@ -5,5 +5,26 @@ body {
 }
 
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.font-rajdhani-300 {
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 300;
+}
+
+.custom-btn {
+    border-radius: 1 !important;
+    font-weight: 700 !important;
+    padding-top: 0.2rem !important;
+    padding-bottom: 0.2rem !important;
+    padding-left: 0.4rem !important;
+    padding-right: 0.4rem !important;
+}

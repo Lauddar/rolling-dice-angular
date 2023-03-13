@@ -1,27 +1,18 @@
-* {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-}
-
-.container {
-    width: 400px;
-    padding: 50px;
-    position: absolute;
-    transform: translate(-50%, -50%);
-    top: 50%;
-    left: 50%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    font-family: "Poppins", sans-serif;
+.custom-play-btn {
+    font-size: 3rem;
+    border-width: 0.2rem;
+    padding-bottom: 0.2rem;
+    padding-top: 0.2rem;
 }
 
 .dice-wrapper {
     width: 90%;
     display: flex;
     justify-content: space-around;
-    padding: 18px;
+}
+
+.fs-xl {
+    font-size: 48px;
 }
 
 .shake {
@@ -34,7 +25,7 @@
     }
 
     50% {
-        transform: rotate(-8deg);
+        transform: rotate(-6deg);
     }
 
     100% {

@@ -1,5 +1,9 @@
+@import url('https://fonts.googleapis.com/css?family=Rajdhani:300,400,500,600,700');
+
 // Custom.scss
 $primary: #E384FF;
-
+$font-family-sans-serif: 'Rajdhani', sans-serif;
+$font-family-monospace: 'Rajdhani', sans-serif;
+$input-btn-font-family: 'Rajdhani', sans-serif;
 
 @import "../node_modules/bootstrap/scss/bootstrap";

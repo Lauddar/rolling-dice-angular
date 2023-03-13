@@ -17,10 +17,10 @@ export class GameComponent {
     "../assets/dice/dice-05.svg",
     "../assets/dice/dice-06.svg"];
 
+  public victory: string = "";
   public total: string = "";
 
-  constructor(private api: ApiService, private router: Router, private activeRouter: ActivatedRoute) {
-  }
+  constructor(private api: ApiService, private router: Router, private activeRouter: ActivatedRoute) { }
 
   getToken() {
     return localStorage.getItem('access_token')
@@ -31,13 +31,16 @@ export class GameComponent {
   }
 
   roll() {
-    let die1: HTMLImageElement | null = document.querySelector("#die-1");
-    let die2: HTMLImageElement | null = document.querySelector("#die-2");
-
-    let dieOneValue: any;
-    let dieTwoValue: any;
+    this.total = '';
+    this.victory = '';
 
     let user = this.getUser();
+
+    let die1 = document.querySelector("#die-1");
+    let die2 = document.querySelector("#die-2");
+
+    /*die1?.setAttribute("src", GameComponent.images[0]);
+    die2?.setAttribute("src", GameComponent.images[0]);*/
 
     die1?.classList.add("shake");
     die2?.classList.add("shake");
@@ -48,25 +51,25 @@ export class GameComponent {
         let dieOneValue: any = dataResponse.game.first_dice;
         let dieTwoValue: any = dataResponse.game.second_dice;
 
-        die1?.classList.add("shake");
-        die2?.classList.add("shake");
-
         setTimeout(() => {
           die1?.classList.remove("shake");
           die2?.classList.remove("shake");
 
-          console.log(dieOneValue);
-          console.log(dieTwoValue);
-          die1?.setAttribute("src", GameComponent.images[dieOneValue-1]);
-          die2?.setAttribute("src", GameComponent.images[dieTwoValue-1]);
+          die1?.setAttribute("src", GameComponent.images[dieOneValue - 1]);
+          die2?.setAttribute("src", GameComponent.images[dieTwoValue - 1]);
 
-          if(dataResponse.game.victory) {
-            this.total = "YOU WIN";
-          } else {
-            this.total = "YOU LOSE";
-          }
+          this.total = "Your result is " + (dieOneValue + dieTwoValue) + ".";
         }, 200);
+
+        setTimeout(() => {
+          if (dataResponse.game.victory) {
+            this.victory = "YOU WIN";
+          } else {
+            this.victory = "YOU LOSE";
+          }
+        }, 1000);
       });
+
     }
   }
 
