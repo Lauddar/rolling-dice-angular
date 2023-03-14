@@ -280,9 +280,18 @@
 </style>
 
 <!-- Toolbar -->
-<div class="toolbar d-flex justify-content-center align-items-center p-5">
-  <a href="#"><h1 class="title-font fw-bold">ROLLING·DICE</h1></a>
+<div class="toolbar justify-content-between align-items-center m-225">
+  <div class="width" style="width: 20%;"></div>
+  <a href="#">
+    <h1 class="title-font fw-bold align-self-center">ROLLING·DICE</h1>
+  </a>
+  <div class="custom-logout d-flex justify-content-end align-self-center" style="width: 20%;">
+    <div *ngIf="displayAppUser()">
+      <app-logout></app-logout>
+    </div>
+  </div>
 </div>
+
 
 <div class="content" role="main">
   <!-- Resources -->
@@ -290,26 +299,26 @@
     <div class="row mt-2 mb-4">
       <div class="col"></div>
       <div class="col justify-content-center">
-      <div *ngIf="displayAppUser()">
-        <app-user></app-user>
+        <div *ngIf="displayAppUser()">
+          <app-user></app-user>
+        </div>
+      </div>
+      <div class="col">
+        <div class="d-flex justify-content-end" *ngIf="isAdmin() && displayAppUser()">
+          <app-admin-panel></app-admin-panel>
+        </div>
       </div>
     </div>
-    <div class="col">
-      <div class="d-flex justify-content-end" *ngIf="isAdmin() && displayAppUser()">
-        <app-admin-panel></app-admin-panel>
-      </div>
-    </div>
-  </div>
-<router-outlet></router-outlet>
+    <router-outlet></router-outlet>
 
-<!-- Footer -->
-<footer class="my-5">
-</footer>
+    <!-- Footer -->
+    <footer class="my-5">
+    </footer>
 
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * The content above * * * * * * * * * * * -->
-<!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * -->
-<!-- * * * * * * * * * * and can be replaced. * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<!-- * * * * * * * * * * End of Placeholder * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+    <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+    <!-- * * * * * * * * * * * The content above * * * * * * * * * * * -->
+    <!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * -->
+    <!-- * * * * * * * * * * and can be replaced. * * * * * * * * * * * -->
+    <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+    <!-- * * * * * * * * * * End of Placeholder * * * * * * * * * * * -->
+    <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->

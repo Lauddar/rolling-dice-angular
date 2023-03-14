@@ -20,6 +20,7 @@ import { AdminPanelComponent } from './components/admin/admin-panel/admin-panel.
 import { PlayersComponent } from './components/admin/players/players.component';
 import { SuccessRateComponent } from './components/admin/success-rate/success-rate.component';
 import { PlayButtonComponent } from './components/play-button/play-button.component';
+import { LogoutComponent } from './components/logout/logout.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { PlayButtonComponent } from './components/play-button/play-button.compon
     PlayersComponent,
     SuccessRateComponent,
     PlayButtonComponent,
+    LogoutComponent,
   ],
   imports: [
     BrowserModule,
