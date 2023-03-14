@@ -39,8 +39,10 @@ export class GameComponent {
     let die1 = document.querySelector("#die-1");
     let die2 = document.querySelector("#die-2");
 
-    /*die1?.setAttribute("src", GameComponent.images[0]);
-    die2?.setAttribute("src", GameComponent.images[0]);*/
+    if (!die1?.getAttribute("src")) {
+      die1?.setAttribute("src", GameComponent.images[5]);
+      die2?.setAttribute("src", GameComponent.images[5]);
+    }
 
     die1?.classList.add("shake");
     die2?.classList.add("shake");
@@ -59,7 +61,7 @@ export class GameComponent {
           die2?.setAttribute("src", GameComponent.images[dieTwoValue - 1]);
 
           this.total = "Your result is " + (dieOneValue + dieTwoValue) + ".";
-        }, 200);
+        }, 500);
 
         setTimeout(() => {
           if (dataResponse.game.victory) {

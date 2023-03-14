@@ -49,7 +49,7 @@ export class PlayersComponent implements OnInit {
         break;
       case 'winner':
         this.getWinnerFromApi();
-        this.title = 'Best players';
+        this.title = 'Best player';
         break;
       default:
         this.getAllPlayersFromApi();
