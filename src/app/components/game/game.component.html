@@ -1,8 +1,16 @@
-<div class="container">
-    <div class="dice-wrapper" id="dice-wrapper">
-        <img class="" id="die-1">
-        <img class="" id="die-2">
+<div class="d-flex justify-content-center align-items-center">
+    <div class="clickable-div" (click)="listGames()">
+        <button class="btn btn-primary custom-btn px-3">See all games</button>
     </div>
-    <p class="my-4 fs-5" id="total">{{total}}</p>
-    <button class="btn btn-outline-primary btn-lg fs-2 border-4 rounded-0 px-4" (click)="roll()">PLAY!</button>
+</div>
+<div class="d-flex flex-column justify-content-center align-items-center my-5">
+    <div class="h-75 d-flex flex-column justify-content-center align-items-center my-4">
+        <h2 class="fs-xl m-0 p-2" style="height:58px" id="victory">{{victory}}</h2>
+        <div class="dice-wrapper" id="dice-wrapper">
+            <img class="pt-4 pb-0 px-2" id="die-1">
+            <img class="pt-4 pb-0 px-2" id="die-2">
+        </div>
+        <p class="fs-5 m-0 p-4 pt-3" style="height:30px" id="total">{{total}}</p>
+    </div>
+    <button class="mt-4 btn btn-outline-primary custom-play-btn rounded-0 px-4 m-4" (click)="roll()">PLAY!</button>
 </div>

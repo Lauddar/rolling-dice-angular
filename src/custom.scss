@@ -1,5 +1,110 @@
+@import url('https://fonts.googleapis.com/css?family=Rajdhani:300,400,500,600,700');
+@import url('https://fonts.googleapis.com/css2?family=Tilt+Neon&display=swap');
+
 // Custom.scss
 $primary: #E384FF;
+$font-family-sans-serif: 'Rajdhani', sans-serif;
+$font-family-monospace: 'Rajdhani', sans-serif;
+$input-btn-font-family: 'Rajdhani', sans-serif;
+$body-bg: #191825;
 
+:root {
+    --mdc-typography-font-family: "Rajdhani", sans-serif;
+    --mdc-typography-caption-font-size: 18px;
+}
+
+
+html,
+body {
+    height: 100%;
+}
+
+a {
+    text-decoration: none !important;
+}
+
+.custom-link:hover {
+    color: #865DFF !important;
+}
+
+.title-font {
+    font-family: 'Tilt Neon', cursive;
+    color: #865DFF;
+    font-size: 38px;
+}
+
+td,
+th {
+    font-size: 18px !important;
+    border-bottom: 1px solid white !important;
+}
+
+.mat-mdc-table {
+    background-color: transparent;
+    border-collapse: collapse;
+    width: 100%;
+    font-size: 18px;
+}
+
+.mdc-data-table__header-cell {
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    font-weight: 700;
+}
+
+.mat-mdc-paginator {
+    background-color: transparent;
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+.custom-btn {
+    border-radius: 1 !important;
+    font-weight: 700 !important;
+    padding-top: 0.2rem !important;
+    padding-bottom: 0.2rem !important;
+    padding-left: 0.4rem !important;
+    padding-right: 0.4rem !important;
+}
+
+.custom-form-btn {
+    margin-top: 18px !important;
+    margin-top: 18px !important;
+}
+
+.custom-form-btn:hover {
+    background-color: #E384FF !important;
+    color: #191825 !important;
+    border-color: transparent !important;
+}
+
+.custom-form {
+    border: 3px solid white;
+    background-color: transparent;
+    color: white;
+    max-width: 450px;
+}
+
+.custom-input {
+    border: 3px solid white;
+    background-color: transparent !important;
+    color: white !important;
+}
+
+.form-label {
+    color: white;
+    font-size: 18px;
+}
+
+.custom-alert {
+    color: #9A1663;
+    border: 1px solid #EFA3C8;
+    border-radius: 5px;
+    background-color: #FAD3E7;
+    font-size: 16px;
+    font-weight: 600;
+    padding: 2px;
+    margin: 16px;
+}
 
 @import "../node_modules/bootstrap/scss/bootstrap";

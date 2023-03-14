@@ -1,0 +1,9 @@
+<mat-menu #menu="matMenu">
+  <button mat-menu-item *ngFor="let option of options" (click)="onSelectionChange(option.route)">
+    {{ option.label }}
+  </button>
+</mat-menu>
+
+<button mat-button [matMenuTriggerFor]="menu">
+  Admin Panel
+</button>

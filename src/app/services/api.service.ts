@@ -32,11 +32,53 @@ export class ApiService {
     return this.http.post<ResponseI>(dir, form);
   }
 
-  play(user: string): Observable<GameI>{
+  play(user: string): Observable<GameI> {
     {
-      console.log(this.httpOptions.headers.get('Authorization'));
       let dir = this.apiEndpoint + "/players/" + user + "/games";
       return this.http.post<GameI>(dir, {}, this.httpOptions)
     }
   }
+
+  getUser(user: string): Observable<any> {
+    let dir = this.apiEndpoint + "/players/" + user;;
+    return this.http.get<any>(dir, this.httpOptions);
+  }
+
+  updateNickname(nickname: string, user: string): Observable<ResponseI> {
+    let dir = this.apiEndpoint + "/players/" + user;
+    return this.http.put<ResponseI>(dir, {nickname, user}, this.httpOptions)
+  }
+
+  gamesList(user: string): Observable<any> {
+    let dir = this.apiEndpoint + "/players/" + user + "/games";
+    return this.http.get<any>(dir, this.httpOptions);
+  }
+
+  deleteGames(user: string): Observable<any> {
+      let dir = this.apiEndpoint + "/players/" + user + "/games";
+      return this.http.delete<any>(dir, this.httpOptions);
+  }
+
+  playersList(): Observable<any> {
+    let dir = this.apiEndpoint + "/players";
+    return this.http.get<any>(dir, this.httpOptions);
+  }
+
+  ranking(): Observable<any> {
+    let dir = this.apiEndpoint + "/players/ranking";
+    return this.http.get<any>(dir, this.httpOptions);
+  }
+
+  worstPlayer(): Observable<any> {
+    let dir = this.apiEndpoint + "/players/ranking/loser";
+    return this.http.get<any>(dir, this.httpOptions);
+  }
+
+  bestPlayer(): Observable<any> {
+    let dir = this.apiEndpoint + "/players/ranking/winner";
+    return this.http.get<any>(dir, this.httpOptions);
+  }
+
+
+
 }
