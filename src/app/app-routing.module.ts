@@ -8,7 +8,10 @@ const routes: Routes = [
   { path: '', redirectTo:'login', pathMatch:'full' },
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'players/:user/play', component: GameComponent },
+  { path: 'players/:user/play', component: GameComponent, canActivate: [AuthGuard, UserGuard]  },
+  { path: 'players/:user/games', component: GamesListComponent, canActivate: [AuthGuard, UserGuard]  },
+  { path: 'players/:user/delete', component: GamesListComponent, canActivate: [AuthGuard, UserGuard]  },
+  { path: 'players/ranking/:route', component: PlayersComponent, canActivate: [AuthGuard]},
 ];
 
 @NgModule({
