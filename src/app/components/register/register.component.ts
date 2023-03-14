@@ -13,6 +13,8 @@ import { ApiService } from 'src/app/services/api.service';
 
 export class RegisterComponent {
   registerForm!: FormGroup;
+  public error: string = '';
+  public errorDetail: string = '';
 
   constructor(private api: ApiService, private router: Router) { }
 
@@ -32,6 +34,11 @@ export class RegisterComponent {
       let dataResponse: ResponseI = data;
       console.log(dataResponse);
       this.router.navigate(['login']);
+    },
+    error => {
+      console.log(error);
+      this.error = "Invalid sign in credentials. Please try again."
+      this.errorDetail = error.error.result.message;
     });
   }
 }

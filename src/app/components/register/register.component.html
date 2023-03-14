@@ -3,7 +3,12 @@
         <div class="row d-flex justify-content-center align-items-center p-5 text-center custom-form col-md-9 mx-auto">
             <h2 class="mb-2 text-uppercase">Sign in</h2>
             <p class="text-white-50 mb-5 fs-6">Create a new player</p>
-            
+            <div *ngIf="error" class="mb-2">
+                <div class="custom-alert text-center mb-1" role="alert">
+                    <p class="mb-0 align-middle">{{error}}</p>
+                </div>
+                <p class="m-0 p-1 align-middle text-center">{{errorDetail}}</p>
+            </div>
             <form novalidate [formGroup]="registerForm" (ngSubmit)="onRegister()">
                 <div class="form-outline form-white mb-4">
                     <label class="form-label">Nickname (Optional)</label>
@@ -23,8 +28,11 @@
                     <input type="password" name="password_confirmation" class="form-control custom-input"
                         formControlName="password_confirmation" />
                 </div>
-                <button type="submit" class="btn btn-outline-light btn-lg custom-form-btn fs-4 px-5 py-2 mb-3">Sign in</button>
-                <a href="/login"><p class="text-white-50 fs-6 custom-link">Do you already have an account? Log in.</p></a>
+                <button type="submit" class="btn btn-outline-light btn-lg custom-form-btn fs-4 px-5 py-2 mb-3">Sign
+                    in</button>
+                <a href="/login">
+                    <p class="text-white-50 fs-6 custom-link">Do you already have an account? Log in.</p>
+                </a>
             </form>
         </div>
     </div>
