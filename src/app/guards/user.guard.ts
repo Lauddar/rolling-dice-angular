@@ -12,12 +12,9 @@ export class UserGuard {
 
   canActivate(route: ActivatedRouteSnapshot): boolean | UrlTree {
     let userId = this.auth.getUserId();
-    console.log(userId);
     let userParam = route.paramMap.get('user');
-    console.log(userParam);
     
     if (userId == userParam) {
-      console.log('ep3');
       return true;
     } else {
       this.router.navigate(['login']);
