@@ -1,8 +1,11 @@
 <div class="d-flex justify-content-center">
     <input type="text" class="custominput flex-grow-8" [(ngModel)]="nickname" [disabled]="!editable"
-       [ngClass]="{'editable': editable}">
-<button class="flex-grow-2" (click)="setEditable()">
-    <i class="fas" [ngClass]="{'fa-pencil-alt': !editable, 'fa-save': editable}"></i>
-    {{ editable ? '' : '' }}
-</button>
+        [ngClass]="{'editable': editable}">
+    <button class="flex-grow-2" (click)="setEditable()">
+        <i class="fas" [ngClass]="{'fa-pencil-alt': !editable, 'fa-save': editable}"></i>
+        {{ editable ? '' : '' }}
+    </button>
+</div>
+<div *ngIf="error" class="" role="alert">
+    <p class="mb-0 align-middle text-center">{{error}}</p>
 </div>

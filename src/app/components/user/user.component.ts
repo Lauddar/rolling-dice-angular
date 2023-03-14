@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { firstValueFrom } from 'rxjs';
 import { ApiService } from 'src/app/services/api.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-user',
@@ -12,9 +13,10 @@ import { ApiService } from 'src/app/services/api.service';
 export class UserComponent implements OnInit {
   public nickname: string | null = '';
   private savedNickname: string | null = '';
+  public error: string | null = null;
   public editable: boolean = false;
 
-  constructor(private api: ApiService, private router: Router, private activeRouter: ActivatedRoute) { }
+  constructor(private api: ApiService, private auth: AuthService, private router: Router, private activeRouter: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.nickname = localStorage.getItem('nickname');
@@ -22,7 +24,7 @@ export class UserComponent implements OnInit {
   }
 
   getUser() {
-    return this.activeRouter.firstChild?.snapshot.paramMap.get('user');
+    return this.auth.getUserId();
   }
 
   async setEditable(): Promise<void> {
@@ -38,6 +40,7 @@ export class UserComponent implements OnInit {
         localStorage.setItem('nickname', this.nickname);
       } else {
         this.nickname = this.savedNickname;
+        this.setError("Nickname already taken");
       }
     } else {
       this.editable = true;
@@ -53,6 +56,14 @@ export class UserComponent implements OnInit {
       return dataResponse.status;
     }
     return false;
+  }
+
+  setError(message: string) {
+    let errorTimeout = null;
+    this.error = message;
+    errorTimeout = setTimeout(() => {
+      this.error = null;
+    }, 5000);
   }
 
 }
