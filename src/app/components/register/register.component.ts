@@ -18,7 +18,7 @@ export class RegisterComponent {
 
   ngOnInit() {
     this.registerForm = new FormGroup({
-      nickname: new FormControl(''),
+      nickname: new FormControl('', Validators.maxLength(50)),
       email: new FormControl('', Validators.required),
       password: new FormControl('', Validators.required),
       password_confirmation: new FormControl('', Validators.required),
