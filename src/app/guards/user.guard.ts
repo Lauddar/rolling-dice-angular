@@ -10,6 +10,7 @@ export class UserGuard {
 
   constructor(private auth: AuthService, private router: Router) {}
 
+  // Check if session and route user parameter are the same
   canActivate(route: ActivatedRouteSnapshot): boolean | UrlTree {
     let userId = this.auth.getUserId();
     let userParam = route.paramMap.get('user');

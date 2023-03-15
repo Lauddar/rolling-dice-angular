@@ -11,15 +11,17 @@ export class PlayButtonComponent {
 
   constructor(private api: ApiService, private router: Router) { }
 
+  // Go back to game
   onPlay() {
-    let user = this.getUser();
+    let user = this.getStorageUser();
     console.log(user);
     if (user) {
       this.router.navigate(['/players', user, 'play']);
     }
   }
 
-  getUser() {
+  // Get user from local storage
+  getStorageUser() {
     return localStorage.getItem('user_id');
   }
 }

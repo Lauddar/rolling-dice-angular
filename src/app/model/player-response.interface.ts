@@ -1,4 +1,4 @@
-export interface PlayerI {
+export interface PlayerResponseI {
   players: {
     id: 4,
     nickname: string,

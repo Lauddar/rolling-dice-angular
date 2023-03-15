@@ -23,14 +23,18 @@ export class UserComponent implements OnInit {
     this.savedNickname = this.nickname;
   }
 
+  // Get user from authentication data
   getUser() {
     return this.auth.getUserId();
   }
 
+  // Control editable field and update nickname
   async setEditable(): Promise<void> {
     if (this.editable) {
       this.editable = false;
       let result = await this.updateNickname();
+
+      // If user has input, check if nickname is unique and update data, if null, set 'anonymous'
       if (result) {
         this.savedNickname = this.nickname;
         if (!this.nickname) {
@@ -47,6 +51,7 @@ export class UserComponent implements OnInit {
     }
   }
 
+  // Update nickname from API
   async updateNickname(): Promise<boolean> {
     const user = this.getUser();
     if (!this.nickname) this.nickname = '';
@@ -58,6 +63,7 @@ export class UserComponent implements OnInit {
     return false;
   }
 
+  // Set error
   setError(message: string) {
     let errorTimeout = null;
     this.error = message;

@@ -1,10 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
-import { ApiService } from 'src/app/services/api.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { PlayerI } from 'src/app/model/player.interface';
+import { ApiService } from 'src/app/services/api.service';
+import { PlayerResponseI } from 'src/app/model/player-response.interface';
 
 @Component({
   selector: 'app-players',
@@ -12,27 +12,35 @@ import { PlayerI } from 'src/app/model/player.interface';
   styleUrls: ['./players.component.css']
 })
 export class PlayersComponent implements OnInit {
+
   displayedColumns: string[] = ['id', 'nickname', 'email', 'success_rate', 'created_at'];
   dataSource!: MatTableDataSource<any>;
   players!: MatTableDataSource<any>;
   public title: string = '';
   public isAll:boolean = false;
-
+  
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
   constructor(private api: ApiService, private router: Router, private activeRouter: ActivatedRoute) { }
 
   ngOnInit() {
+    // Subscribe to router events to update the players data when the route changes
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         this.updatePlayers();
       }
     });
 
+    // Update the players data
     this.updatePlayers();
   }
 
+  getRoute() {
+    return this.activeRouter.snapshot.paramMap.get('route');
+  }
+
+  // Update the players data depending on the current route
   updatePlayers() {
     let route = this.getRoute();
 
@@ -59,28 +67,27 @@ export class PlayersComponent implements OnInit {
     }
   }
 
-  getRoute() {
-    return this.activeRouter.snapshot.paramMap.get('route');
-  }
-
+  // Get all the players from the API and update the table.
   getAllPlayersFromApi() {
-    this.api.playersList().subscribe((player: PlayerI) => {
+    this.api.playersList().subscribe((player: PlayerResponseI) => {
       this.players = new MatTableDataSource(player.players);
       this.players.paginator = this.paginator;
       this.players.sort = this.sort;
     });
   }
 
+  // Get the best player from the API and update the table.
   getWinnerFromApi() {
-    this.api.bestPlayer().subscribe((player: PlayerI) => {
+    this.api.bestPlayer().subscribe((player: PlayerResponseI) => {
       this.players = new MatTableDataSource(player.players);
       this.players.paginator = this.paginator;
       this.players.sort = this.sort;
     });
   }
 
+  // Get the worst player from the API and update the table.
   getLoserFromApi() {
-    this.api.worstPlayer().subscribe((player: PlayerI) => {
+    this.api.worstPlayer().subscribe((player: PlayerResponseI) => {
       this.players = new MatTableDataSource(player.players);
       this.players.paginator = this.paginator;
       this.players.sort = this.sort;

@@ -1,4 +1,4 @@
-export interface GameI {
+export interface PlayResponseI {
     "message": string,
     "game": {
         "user_id": string,

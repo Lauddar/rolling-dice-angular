@@ -1,4 +1,7 @@
 <app-play-button></app-play-button>
+<div *ngIf="message" class="custom-alert text-center" role="alert">
+  <p class="mb-0 align-middle">{{message}}</p>
+</div>      
 <div class="container-fluid mt-4 p-0">
       <table mat-table class="custom-table" [dataSource]="games" matSort>
         <!-- ID Column -->
