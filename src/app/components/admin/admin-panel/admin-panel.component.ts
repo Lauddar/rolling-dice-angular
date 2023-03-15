@@ -7,6 +7,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./admin-panel.component.css']
 })
 export class AdminPanelComponent {
+
+  // Define admin panel options
   options = [
     { label: 'See all players', route: 'all' },
     { label: 'See worst player', route: 'loser' },
@@ -14,6 +16,8 @@ export class AdminPanelComponent {
   ];
 
   constructor(private router: Router) { }
+
+  // Navigate to the corresponding route in menu
   onSelectionChange(route: string) {
     this.router.navigate(['players/ranking/', route]);
   }

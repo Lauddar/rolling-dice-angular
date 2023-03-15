@@ -11,7 +11,6 @@ import { AuthService } from 'src/app/services/auth.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-
 export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
   public error: string = '';
@@ -19,6 +18,7 @@ export class LoginComponent implements OnInit {
   constructor(private api: ApiService, private auth: AuthService, private router: Router) { }
 
   ngOnInit() {
+    // Check if there is user data on localstorage, if not, display login
     if (this.auth.isLoggedIn()) {
       let user = localStorage.getItem('user_id');
       this.router.navigate([`players/${user}/play`]);
@@ -30,9 +30,15 @@ export class LoginComponent implements OnInit {
     }
   }
 
+  // Send request to API and login the application
   onLogin() {
+
+    // Save form data
     let formValue = this.loginForm.value as LoginI;
+
+    // Call to API
     this.api.login(formValue).subscribe(data => {
+      // Save data and token in local storage
       let dataResponse: ResponseI = data;
       this.auth.setAuthToken(dataResponse.result.access_token.accessToken);
       this.auth.setUserId(dataResponse.result.user.id);
@@ -41,6 +47,7 @@ export class LoginComponent implements OnInit {
       let user = dataResponse.result.user.id;
       this.router.navigate([`players/${user}/play`]);
     },
+    // Get errors
       error => {
         this.error = "Invalid login credentials. Please try again."
         console.log(this.error);

@@ -10,9 +10,9 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class LogoutComponent {
 
-
   constructor(private api: ApiService,  private auth: AuthService, private router: Router) { }
   
+  // Remove local user data and log out
   onLogout() {
     this.auth.logout();
     this.router.navigate(['login']);

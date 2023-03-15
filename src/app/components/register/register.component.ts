@@ -27,14 +27,18 @@ export class RegisterComponent {
     });
   }
 
+  // Send new user request to API
   onRegister() {
     let formValue = this.registerForm.value as RegisterI;
 
+    // API call
     this.api.register(formValue).subscribe(data => {
+      // Get response
       let dataResponse: ResponseI = data;
       console.log(dataResponse);
       this.router.navigate(['login']);
     },
+    // Get errors
     error => {
       console.log(error);
       this.error = "Invalid sign in credentials. Please try again."

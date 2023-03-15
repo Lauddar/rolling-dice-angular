@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
 import { ApiService } from 'src/app/services/api.service';
 
 @Component({
@@ -10,14 +9,13 @@ import { ApiService } from 'src/app/services/api.service';
 export class SuccessRateComponent {
 public success_rate: number | undefined;
 
-constructor(private api: ApiService, private router: Router) { }
+constructor(private api: ApiService) { }
 
+// Get the players average success rate when the component is initialized.
 ngOnInit() {
   this.api.ranking().subscribe(data => {
     this.success_rate = data.averageSuccessRate;
   });
 }
-
-
 
 }
