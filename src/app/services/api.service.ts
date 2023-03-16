@@ -18,16 +18,18 @@ export class ApiService {
   // private apiEndpoint = "[**DIRECTORY_PATH**/public/api";
   private apiEndpoint = "http://159.65.63.87/api"; // Server endpoint
 
-  private token: any = this.auth.getAuthToken();
+  private token: any;
+  private httpOptions;
 
-  private httpOptions = {
-    headers: new HttpHeaders({
-      'content-Type': 'application/json',
-      'Authorization': `Bearer ${this.token}`
-    })
-  };
-
-  constructor(private http: HttpClient, private auth: AuthService) { }
+  constructor(private http: HttpClient, private auth: AuthService) {
+    this.token = this.auth.getAuthToken();
+    this.httpOptions = {
+      headers: new HttpHeaders({
+        'content-Type': 'application/json',
+        'Authorization': `Bearer ${this.token}`
+      })
+    }
+  }
 
   // Register a new player
   register(form: RegisterI): Observable<ResponseI> {
@@ -52,7 +54,7 @@ export class ApiService {
   // Update user nickname
   updateNickname(nickname: string, user: string): Observable<ResponseI> {
     let dir = this.apiEndpoint + "/players/" + user;
-    return this.http.put<ResponseI>(dir, {nickname, user}, this.httpOptions)
+    return this.http.put<ResponseI>(dir, { nickname, user }, this.httpOptions)
   }
 
   // Return a list of user games
@@ -63,12 +65,14 @@ export class ApiService {
 
   // Delete all user games
   deleteGames(user: string): Observable<any> {
-      let dir = this.apiEndpoint + "/players/" + user + "/games";
-      return this.http.delete<any>(dir, this.httpOptions);
+    let dir = this.apiEndpoint + "/players/" + user + "/games";
+    return this.http.delete<any>(dir, this.httpOptions);
   }
 
   // Return the list of players
   playersList(): Observable<PlayerResponseI> {
+    console.log(this.token);
+    console.log(this.httpOptions.headers);
     let dir = this.apiEndpoint + "/players";
     return this.http.get<any>(dir, this.httpOptions);
   }
