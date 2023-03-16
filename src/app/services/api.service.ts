@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpClientModule, HttpHeaders } from '@angular/common/http'
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 
 import { GameResponseI } from '../model/game-response.intarfece';
 import { LoginI } from '../model/login.interface';
@@ -8,22 +8,26 @@ import { RegisterI } from '../model/register.interface';
 import { ResponseI } from '../model/response.interface';
 import { PlayResponseI } from '../model/play-response.interface';
 import { PlayerResponseI } from '../model/player-response.interface';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
 
-  private apiEndpoint = "http://159.65.63.87/api";
+  // private apiEndpoint = "[**DIRECTORY_PATH**/public/api";
+  private apiEndpoint = "http://159.65.63.87/api"; // Server endpoint
+
+  private token: any = this.auth.getAuthToken();
 
   private httpOptions = {
     headers: new HttpHeaders({
       'content-Type': 'application/json',
-      'Authorization': `Bearer ${localStorage.getItem('token')}`
+      'Authorization': `Bearer ${this.token}`
     })
   };
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private auth: AuthService) { }
 
   // Register a new player
   register(form: RegisterI): Observable<ResponseI> {
