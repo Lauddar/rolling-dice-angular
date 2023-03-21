@@ -45,7 +45,6 @@ export class LoginComponent implements OnInit {
       this.auth.setAuthToken(dataResponse.result.access_token);
       localStorage.setItem('nickname', dataResponse.result.user.nickname);
       localStorage.setItem('role', dataResponse.result.user.role);
-      let user = dataResponse.result.user.id;
       this.router.navigate([`players/${user}/play`]);
     },
     // Get errors
@@ -55,4 +54,5 @@ export class LoginComponent implements OnInit {
       }
     );
   }
+
 }

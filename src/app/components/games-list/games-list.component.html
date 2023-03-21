@@ -1,46 +1,46 @@
 <app-play-button></app-play-button>
-<div *ngIf="message" class="custom-alert text-center" role="alert">
-  <p class="mb-0 align-middle">{{message}}</p>
-</div>      
 <div class="container-fluid mt-4 p-0">
-      <table mat-table class="custom-table" [dataSource]="games" matSort>
-        <!-- ID Column -->
-        <ng-container matColumnDef="id">
-          <th mat-header-cell *matHeaderCellDef> # </th>
-          <td mat-cell *matCellDef="let game; let i = index" class="fw-bold"> {{ i + 1 }} </td>
-        </ng-container>
+  <table mat-table class="custom-table" [dataSource]="games" matSort>
+    <!-- ID Column -->
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef> # </th>
+      <td mat-cell *matCellDef="let game; let i = index" class="fw-bold"> {{ i + 1 }} </td>
+    </ng-container>
 
-        <!-- First Dice Column -->
-        <ng-container matColumnDef="first_dice">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> First Dice </th>
-          <td mat-cell *matCellDef="let game"> {{ game.first_dice }} </td>
-        </ng-container>
+    <!-- First Dice Column -->
+    <ng-container matColumnDef="first_dice">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> First Dice </th>
+      <td mat-cell *matCellDef="let game"> {{ game.first_dice }} </td>
+    </ng-container>
 
-        <!-- Second Dice Column -->
-        <ng-container matColumnDef="second_dice">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> Second Dice </th>
-          <td mat-cell *matCellDef="let game"> {{ game.second_dice }} </td>
-        </ng-container>
+    <!-- Second Dice Column -->
+    <ng-container matColumnDef="second_dice">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Second Dice </th>
+      <td mat-cell *matCellDef="let game"> {{ game.second_dice }} </td>
+    </ng-container>
 
-        <!-- Victory Column -->
-        <ng-container matColumnDef="victory">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> Victory </th>
-          <td mat-cell *matCellDef="let game"> {{ game.victory === 1 ? 'VICTORY' : 'LOSS' }} </td>
-        </ng-container>
+    <!-- Victory Column -->
+    <ng-container matColumnDef="victory">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Victory </th>
+      <td mat-cell *matCellDef="let game"> {{ game.victory === 1 ? 'VICTORY' : 'LOSS' }} </td>
+    </ng-container>
 
-        <!-- Created At Column -->
-        <ng-container matColumnDef="created_at">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> Created At </th>
-          <td mat-cell *matCellDef="let game"> {{ game.created_at | date: 'dd/MM/yyyy HH:mm' }}
-          </td>
-        </ng-container>
+    <!-- Created At Column -->
+    <ng-container matColumnDef="created_at">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Created At </th>
+      <td mat-cell *matCellDef="let game"> {{ game.created_at | date: 'dd/MM/yyyy HH:mm' }}
+      </td>
+    </ng-container>
 
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-      </table>
-
-      <mat-paginator [pageSizeOptions]="[10, 25, 100]" showFirstLastButtons></mat-paginator>
-    </div>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+  
+  <div *ngIf="message" class="custom-message text-center" role="alert">
+    <p class="mb-0 align-middle">{{message}}</p>
+  </div>
+  <mat-paginator [pageSizeOptions]="[10, 25, 100]" showFirstLastButtons></mat-paginator>
+</div>
 <div class="clickable-div my-4" (click)="delete()">
   <button class="btn btn-primary custom-btn px-3">Delete all games</button>
 </div>

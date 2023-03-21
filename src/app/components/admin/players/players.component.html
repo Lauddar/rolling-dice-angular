@@ -27,6 +27,11 @@
                           {{ player.success_rate }} %
                         </ng-container>
                       </td>                      
+                    <td mat-cell *matCellDef="let player" class="text-center">
+                        <ng-container *ngIf="player.success_rate > ''">
+                          {{ player.success_rate }} %
+                        </ng-container>
+                      </td>                      
                 </ng-container>
 
                 <!-- Created At Column -->

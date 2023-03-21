@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpClientModule, HttpHeaders } from '@angular/common/http'
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 
 import { GameResponseI } from '../model/game-response.intarfece';
 import { LoginI } from '../model/login.interface';
@@ -8,26 +8,31 @@ import { RegisterI } from '../model/register.interface';
 import { ResponseI } from '../model/response.interface';
 import { PlayResponseI } from '../model/play-response.interface';
 import { PlayerResponseI } from '../model/player-response.interface';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
 
+  // private apiEndpoint = "[**DIRECTORY_PATH**/public/api";
   private apiEndpoint = "http://localhost/workspace/rolling-dice-laravel-api-rest/public/api";
   // private apiEndpoint = "[**DIRECTORY_PATH**/public/api";
   //private apiEndpoint = "http://159.65.63.87/api"; // Server endpoint
 
-  private token: any = this.auth.getAuthToken();
+  private token: any = this.auth.getAuthToken(); // Server endpoint
 
-  private httpOptions = {
-    headers: new HttpHeaders({
-      'content-Type': 'application/json',
-      'Authorization': `Bearer ${localStorage.getItem('token')}`
-    })
-  };
+  private httpOptions;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private auth: AuthService) {
+    this.token = this.auth.getAuthToken();
+    this.httpOptions = {
+      headers: new HttpHeaders({
+        'content-Type': 'application/json',
+        'Authorization': `Bearer ${this.token}`
+      })
+    }
+  }
 
   // Register a new player
   register(form: RegisterI): Observable<ResponseI> {
@@ -52,7 +57,7 @@ export class ApiService {
   // Update user nickname
   updateNickname(nickname: string, user: string): Observable<ResponseI> {
     let dir = this.apiEndpoint + "/players/" + user;
-    return this.http.put<ResponseI>(dir, {nickname, user}, this.httpOptions)
+    return this.http.put<ResponseI>(dir, { nickname, user }, this.httpOptions)
   }
 
   // Return a list of user games
@@ -63,13 +68,13 @@ export class ApiService {
 
   // Delete all user games
   deleteGames(user: string): Observable<any> {
-      let dir = this.apiEndpoint + "/players/" + user + "/games";
-      return this.http.delete<any>(dir, this.httpOptions);
+    let dir = this.apiEndpoint + "/players/" + user + "/games";
+    return this.http.delete<any>(dir, this.httpOptions);
   }
 
   // Return the list of players
-  playersList(): Observable<any> {
-    let dir = this.apiEndpoint + "/players/ranking";
+  playersList(): Observable<PlayerResponseI> {
+    let dir = this.apiEndpoint + "/players";
     return this.http.get<any>(dir, this.httpOptions);
   }
 

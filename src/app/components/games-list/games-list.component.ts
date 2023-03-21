@@ -50,10 +50,10 @@ export class GamesListComponent implements OnInit {
       if (user) {
         this.api.deleteGames(user).subscribe(data => {
           let dataResponse = data;
+          this.refreshComponent();
           this.setMessage(dataResponse.message);
         });
       }
-      this.ngOnInit();
     }
   }
 
@@ -62,7 +62,11 @@ export class GamesListComponent implements OnInit {
     this.message = message;
     let messageTimeout = setTimeout(() => {
       this.message = '';
-    }, 5000);
+    }, 3000);
+  }
+
+  refreshComponent() {
+    this.ngOnInit();
   }
 
 }
