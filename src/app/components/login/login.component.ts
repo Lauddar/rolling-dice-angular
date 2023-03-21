@@ -40,8 +40,9 @@ export class LoginComponent implements OnInit {
     this.api.login(formValue).subscribe(data => {
       // Save data and token in local storage
       let dataResponse: ResponseI = data;
-      this.auth.setAuthToken(dataResponse.result.access_token.accessToken);
-      this.auth.setUserId(dataResponse.result.user.id);
+      let user = dataResponse.result.user.id;
+      this.auth.setUserId(user);
+      this.auth.setAuthToken(dataResponse.result.access_token);
       localStorage.setItem('nickname', dataResponse.result.user.nickname);
       localStorage.setItem('role', dataResponse.result.user.role);
       let user = dataResponse.result.user.id;

@@ -13,7 +13,7 @@ import { PlayerResponseI } from 'src/app/model/player-response.interface';
 })
 export class PlayersComponent implements OnInit {
 
-  displayedColumns: string[] = ['id', 'nickname', 'email', 'success_rate', 'created_at'];
+  displayedColumns: string[] = ['nickname', 'email', 'success_rate', 'games'];
   dataSource!: MatTableDataSource<any>;
   players!: MatTableDataSource<any>;
   public title: string = '';
@@ -69,8 +69,9 @@ export class PlayersComponent implements OnInit {
 
   // Get all the players from the API and update the table.
   getAllPlayersFromApi() {
-    this.api.playersList().subscribe((player: PlayerResponseI) => {
-      this.players = new MatTableDataSource(player.players);
+    this.api.playersList().subscribe(data => {
+      console.log(data);
+      this.players = new MatTableDataSource(data.users);
       this.players.paginator = this.paginator;
       this.players.sort = this.sort;
     });
@@ -78,8 +79,8 @@ export class PlayersComponent implements OnInit {
 
   // Get the best player from the API and update the table.
   getWinnerFromApi() {
-    this.api.bestPlayer().subscribe((player: PlayerResponseI) => {
-      this.players = new MatTableDataSource(player.players);
+    this.api.bestPlayer().subscribe(data => {
+      this.players = new MatTableDataSource(data.user);
       this.players.paginator = this.paginator;
       this.players.sort = this.sort;
     });
@@ -87,8 +88,9 @@ export class PlayersComponent implements OnInit {
 
   // Get the worst player from the API and update the table.
   getLoserFromApi() {
-    this.api.worstPlayer().subscribe((player: PlayerResponseI) => {
-      this.players = new MatTableDataSource(player.players);
+    this.api.worstPlayer().subscribe(data => {
+      console.log(data);
+      this.players = new MatTableDataSource(data.user);
       this.players.paginator = this.paginator;
       this.players.sort = this.sort;
     });
