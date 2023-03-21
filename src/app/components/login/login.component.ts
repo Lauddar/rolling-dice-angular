@@ -42,7 +42,7 @@ export class LoginComponent implements OnInit {
       let dataResponse: ResponseI = data;
       let user = dataResponse.result.user.id;
       this.auth.setUserId(user);
-      this.auth.setAuthToken(dataResponse.result.access_token.accessToken);
+      this.auth.setAuthToken(dataResponse.result.access_token);
       localStorage.setItem('nickname', dataResponse.result.user.nickname);
       localStorage.setItem('role', dataResponse.result.user.role);
       this.router.navigate([`players/${user}/play`]);

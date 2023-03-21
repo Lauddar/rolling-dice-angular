@@ -15,8 +15,9 @@ import { AuthService } from './auth.service';
 })
 export class ApiService {
 
+  private apiEndpoint = "http://localhost/workspace/rolling-dice-laravel-api-rest/public/api";
   // private apiEndpoint = "[**DIRECTORY_PATH**/public/api";
-  private apiEndpoint = "http://159.65.63.87/api"; // Server endpoint
+  //private apiEndpoint = "http://159.65.63.87/api"; // Server endpoint
 
   private token: any;
   private httpOptions;
@@ -70,10 +71,8 @@ export class ApiService {
   }
 
   // Return the list of players
-  playersList(): Observable<PlayerResponseI> {
-    console.log(this.token);
-    console.log(this.httpOptions.headers);
-    let dir = this.apiEndpoint + "/players";
+  playersList(): Observable<any> {
+    let dir = this.apiEndpoint + "/players/ranking";
     return this.http.get<any>(dir, this.httpOptions);
   }
 
@@ -84,13 +83,13 @@ export class ApiService {
   }
 
   // Return the player with the worst average success rate
-  worstPlayer(): Observable<PlayerResponseI> {
+  worstPlayer(): Observable<any> {
     let dir = this.apiEndpoint + "/players/ranking/loser";
     return this.http.get<any>(dir, this.httpOptions);
   }
 
   // Return the player with the best average success rate
-  bestPlayer(): Observable<PlayerResponseI> {
+  bestPlayer(): Observable<any> {
     let dir = this.apiEndpoint + "/players/ranking/winner";
     return this.http.get<any>(dir, this.httpOptions);
   }
