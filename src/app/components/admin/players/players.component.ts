@@ -70,7 +70,6 @@ export class PlayersComponent implements OnInit {
   // Get all the players from the API and update the table.
   getAllPlayersFromApi() {
     this.api.playersList().subscribe(data => {
-      console.log(data);
       this.players = new MatTableDataSource(data.users);
       this.players.paginator = this.paginator;
       this.players.sort = this.sort;
@@ -89,7 +88,6 @@ export class PlayersComponent implements OnInit {
   // Get the worst player from the API and update the table.
   getLoserFromApi() {
     this.api.worstPlayer().subscribe(data => {
-      console.log(data);
       this.players = new MatTableDataSource(data.user);
       this.players.paginator = this.paginator;
       this.players.sort = this.sort;

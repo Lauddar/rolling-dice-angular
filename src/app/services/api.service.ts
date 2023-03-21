@@ -15,13 +15,11 @@ import { AuthService } from './auth.service';
 })
 export class ApiService {
 
-  // private apiEndpoint = "[**DIRECTORY_PATH**/public/api";
   private apiEndpoint = "http://localhost/workspace/rolling-dice-laravel-api-rest/public/api";
   // private apiEndpoint = "[**DIRECTORY_PATH**/public/api";
   //private apiEndpoint = "http://159.65.63.87/api"; // Server endpoint
 
-  private token: any = this.auth.getAuthToken(); // Server endpoint
-
+  private token: any;
   private httpOptions;
 
   constructor(private http: HttpClient, private auth: AuthService) {
@@ -73,8 +71,8 @@ export class ApiService {
   }
 
   // Return the list of players
-  playersList(): Observable<PlayerResponseI> {
-    let dir = this.apiEndpoint + "/players";
+  playersList(): Observable<any> {
+    let dir = this.apiEndpoint + "/players/ranking";
     return this.http.get<any>(dir, this.httpOptions);
   }
 
